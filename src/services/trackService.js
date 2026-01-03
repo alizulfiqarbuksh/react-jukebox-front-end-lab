@@ -24,8 +24,37 @@ const show = async (id) => {
   }
 }
 
+const create = async (track) => {
+  try {
+
+    const response = await axios.post(BASE_URL, track);
+    return response.data.track
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteOne = async (id) => {
+  try {
+
+    const response = await axios.delete(`${BASE_URL}/${id}`);
+    return response.data.track
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const update = async (id, track) => {
+  const response = await axios.put(`${BASE_URL}/${id}`, track)
+  return response.data.track
+}
 
 export {
   index,
   show,
+  create,
+  deleteOne,
+  update,
 };

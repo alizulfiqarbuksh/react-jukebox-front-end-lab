@@ -1,27 +1,9 @@
 import React from 'react'
-import * as trackService from '../../services/trackService'
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-function TrackList() {
+function TrackList({tracks, handleDelete, findTrackToUpdate}) {
 
-  const [tracks, setTracks] = useState([]);
-
-  useEffect(() => {
-    const getAllTracks = async () => {
-      try {
-
-        const tracks = await trackService.index()
-        setTracks(tracks)
-        
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    getAllTracks()
-
-  }, [])
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -29,8 +11,15 @@ function TrackList() {
 
       {tracks.map((track) =>
         <div key={track._id}>
-          <h3>Title:{track.title}</h3>
-          <Link to={`/${track._id}`}><button>Play</button></Link>
+          <h3>Title: {track.title}</h3>
+          <Link to={`/tracks/${track._id}`}><button>Play</button></Link>
+          {' '}
+          <button onClick={() => {
+            findTrackToUpdate(track._id)
+            navigate(`/tracks/${track._id}/update`)
+            }} >Update</button>
+          {' '}
+          <button onClick={() => {handleDelete(track._id)}} >Delete</button>
         </div>
       )}
     </div>

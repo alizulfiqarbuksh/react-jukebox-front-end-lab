@@ -8,6 +8,7 @@ function App() {
       <div>
         <div>
           <Link to='/'>Home</Link> | {' '}
+          <Link to='/tracks/add-track'>Add Track</Link>
         </div>
         <Routes>
           <Route path='*' element={<Home />} />

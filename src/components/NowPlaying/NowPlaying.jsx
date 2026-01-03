@@ -27,8 +27,8 @@ function NowPlaying() {
   return (
     <div>
       <h1>NowPlaying</h1>
-      <h3>{track.title}</h3>
-      <p>{track.artist}</p>
+      <h3>Title: {track.title}</h3>
+      <p>Artist: {track.artist}</p>
     </div>
   )
 }
